@@ -63,16 +63,9 @@ Route::middleware('auth:sanctum')->group(function () {
     // Ruta POST para CREAR un periodo - ¡ESTA ES LA CLAVE!
     Route::post('/periodos', [PeriodoDisponibleController::class, 'store'])->name('api.periodos.store');
 
-    // Ejemplo para Hojas de Servicio (CRUD completo)
-    // Route::apiResource('hojas', HojaServicioController::class); // Define index, store, show, update, destroy
-
-    // Ejemplo para Configuración Global
-    // Route::get('/configuracion', [ConfiguracionController::class, 'show'])->name('api.configuracion.show');
-    // Route::put('/configuracion', [ConfiguracionController::class, 'update'])->name('api.configuracion.update');
-    // Route::post('/configuracion/upload-membrete', [ConfiguracionController::class, 'uploadHojaMembretada'])->name('api.configuracion.upload');
-
-    // Ejemplo para Generación de PDF
-    // Route::get('/hojas/{hoja}/pdf', [PdfController::class, 'generate'])->name('api.hojas.pdf');
+    // --- Rutas para Notas Buenas ---
+    Route::get('/notas-buenas/{notaBuena}/pdf', [App\Http\Controllers\Api\NotaBuenaController::class, 'generatePdf'])->name('api.notas-buenas.pdf');
+    Route::apiResource('notas-buenas', App\Http\Controllers\Api\NotaBuenaController::class);
 
 }); // Fin del grupo middleware auth:sanctum
 
